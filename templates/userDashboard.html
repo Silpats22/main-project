@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #072279;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #ddd;
+      padding: 10px;
+      width: 200px;
+      float: left;
+      height: 100vh;
+    }
+
+    nav a {
+      display: block;
+      padding: 10px;
+      margin-bottom: 5px;
+      text-decoration: none;
+      color: #333;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background-color:#8fd8eb;
+    }
+
+    main {
+      margin-left: 220px;
+      padding: 20px;
+    }
+
+    #chartContainer {
+      height: 300px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #summary {
+      margin-top: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .table-users {
+            width: 90%;
+            margin: 2rem auto;
+            border-collapse: collapse;
+        }
+
+        .table-users th, .table-users td {
+            text-align: left;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 0.5rem;
+        }
+        .table-users th{
+            background: #fafafa;
+            padding: 1rem auto;
+        }
+
+        .btn {
+            background: transparent;
+            width: 5rem;
+            height: 2rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-download {
+            color: #07239c;
+            border: 1px solid #07239c;
+        }
+        .btn-download:hover {
+            background: #07239c;
+            color: #ffff;
+        }
+        .btn-delete {
+            color: #ec2d14;
+            border: 1px solid #ec2d14;
+        }
+        .btn-delete:hover {
+            background: #ec2d14;
+            color: #ffff;
+        }
+
+        .table-wrapper{
+            text-align: center;
+        }
+
+        .btn-add{
+            width: 10rem;
+            height: 2rem;
+            background: #07239c;
+            border: none;
+            color: #ffff;
+        }
+        #upload-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WELCOME TO YOUR DASHBOARD</h1>
+  </header>
+
+  <nav>
+    <a href="/stayDashboard">Files</a>
+    <a href="/uploadPage">Add File</a>
+    <a href="/logout">Logout</a>
+  </nav>
+<main>
+  {% if smessage %}
+  <div id="alert" class = "alert alert-success" style="color: #1f791c; width: 400px; margin-left: 400px; height: 30px; border-radius: 10px; align-content: center; ">
+      <strong> {{smessage}}</strong>
+  </div>
+  {% endif %}
+
+  <form action="/download" method="post"></form>
+        <div class="table-wrapper">
+            <table class="table-users">
+                <tr>
+                    <th>File Name</th>
+                    <th>File Size</th>
+                    <th>Action</th>
+                </tr>
+                {% for key, value in data.items() %}
+                  <tr>
+                    <td>{{ value.file_name }}</td>
+                    <td>{{ value.file_size }} KB</td>
+                      <td>
+                        <button type="submit" id="downloadButton" class="button btn btn-download" data-file="{{ value.file_name }}">Download</button>
+                        <button class="button btn btn-delete" file-name="{{value.file_name}}" >Delete</button>
+                     </td>
+                  </tr>
+                  {% endfor %}
+            </table>
+        </div>
+      </form>
+
+    </main>
+    <script>
+      setTimeout(function(){
+          var alertDiv = document.getElementById('alert');
+          if(alertDiv){
+              alertDiv.style.display = 'none';
+          }
+
+      },2000);
+
+      document.querySelectorAll('.btn-download').forEach(button => {
+            button.addEventListener('click', function() {
+                // Get the file name associated with the clicked button
+                var fileName = this.getAttribute('data-file');
+                // Redirect to Flask route to handle file download
+                window.location.href = '/download/' + fileName;
+           });
+          });
+
+          document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                var name = this.getAttribute('file-name')
+                window.location.href = '/delete/' + name;
+           });
+          });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            border-top: 50px solid #07239c;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body::before {
+            margin-top: 10px;
+            content: "Keep your files here";
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #07239c;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .image-container {
+            float: left;
+            margin-right: 20px; /* Add spacing between image and form */
+        }
+        h1 {
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input[type="text"],
+        input[type="password"] {
+            height: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 500px;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        #registerButton {
+            background-color: #07239c;
+            color: #ffffff;
+            border-radius: 20px;
+            width: 500px;
+            height: 50px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        #registerButton:hover {
+            background-color: #29a5ec;
+        }
+        .login-link {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            color: #29a5ec;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            {% if exist_message %}
+        <div id="alert1" class = "alert alert-danger" style="margin-top: 20px; background-color:#ffffff; color: #e22113; width: 400px; margin-left: 470px; height: 30px; border-radius: 10px; align-content: center; ">
+            <strong> {{exist_message}}</strong>
+    
+    
+        </div>
+        {% endif %}
+            <form action="/createAccount" method="POST">
+                <h1>SIGN UP HERE</h1>
+                <input type="text" id="username" name="username" placeholder="Enter username"><br>
+                <input type="password" id="password" name="password" placeholder="Enter password"><br>
+                <input type="password" id="password2" name="password2" placeholder="Re-enter password"><br>
+                <button id="registerButton" type="submit">Register</button>
+            </form>
+            <a class="login-link" href="/login">Already have an account? Login here</a>
+        </div>
+        {% if msg %}
+        <div id="alert" class = "alert alert-success" style="margin-top: 20px; background-color:#ffffff; color: #189929; width: 400px; margin-left: 500px; height: 30px; border-radius: 10px; align-content: center; ">
+            <strong> {{msg}}</strong>
+    
+    
+        </div>
+        {% endif %}
+        
+    </div>
+    <script>
+        setTimeout(function(){
+            var alertDiv = document.getElementById('alert');
+            if(alertDiv){
+                alertDiv.style.display = 'none';
+            }
+
+        },5000);
+
+        setTimeout(function(){
+            var alertDiv = document.getElementById('alert1');
+            if(alertDiv){
+                alertDiv.style.display = 'none';
+            }
+
+        },5000);
+    </script>
+</body>
+</html>

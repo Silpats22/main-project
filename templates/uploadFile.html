@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        form {
+            width: 700px;
+            height: 200px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            width: 200px;
+            display: block;
+            margin-bottom: 70px;
+            margin: 0 auto 20px auto;
+        }
+        button[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #07239c;
+            color: #ffffff;
+            width: 150px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0c23a1;
+        }
+        nav a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color:#8fd8eb;
+        }
+        main {
+      margin-left: 50px;
+      padding: 20px;
+    }
+
+    </style>
+</head>
+<nav>
+    <a href="/stayDashboard">Go to Dashboard</a>
+  </nav>
+  <main>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <h2>Upload your File here</h2>
+        <input type="file" name="file" id="file">
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</main>
+</html>
+

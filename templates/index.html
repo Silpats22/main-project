@@ -1,1 +1,59 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dupliclean</title>
+    <style>
+        body {
+            border-top: 50px solid #07239c; 
+            margin: 0;
+            padding: 0; 
+        }
+        body::before {
+            margin-top: 10px;
+            content: "Keep your files here";
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #07239c; 
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+        .button-container {
+            margin-top: 1px;
+            margin-left: 800px;
+        }
+        .frame {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-container {
+            margin-top: 50px;
+            margin-left: 100px;
+            width: 180px;
+            height: 180px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img class="img" src="static/logo.png" width="400px" height="400px" alt="Dupliclean">
+    </div>
+    <div class="button-container">
+        <a href="/login"><button onclick="true" id="loginButton" style="background-color: #07239c; color: #ffffff; border-radius: 20px; width: 400px; height: 50px; font-size: 16px;" type="button">User Login</button></a><br>
+    </div>
+    <a href="/signup"><button onclick="true" id="signUpButton" style="background-color:  #07239c; color: #ffffff; border-radius: 20px; width: 400px; height: 50px; margin-top: 50px; margin-left: 800px; font-size: 16px;"  type="button">User Sign Up</button></a><br>
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function() {
+            // Redirect to /login when the button is clicked
+            window.location.href = "/login";
+        });
+    </script>
+</body>
+</html>

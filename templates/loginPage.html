@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        body {
+            border-top: 50px solid #07239c; /* Set border width and color */
+            margin: 0;
+            padding: 0; /* Add padding to separate content from the border */
+        }
+        body::before {
+            margin-top: 10px;
+            content: "Keep your files here";
+            display: block;
+            text-align: center;
+            font-size: 20px; /* Adjust the font size for the added text */
+            color: #ffffff;/* Adjust the color for the added text */
+            background-color: #07239c; /* Adjust the background color for the added text */ /* Set border width and color only on top */
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+        .button-container {
+            margin-top: 20px;
+            margin-left: 710px;
+            margin-bottom: 20px;      }
+        .frame {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-container {
+            float: left;
+            margin-left: 100px;
+            margin-top: 50px;
+            width: 180px;
+            height: 180px;
+        }
+        p {
+            font-size: 25px;   /* Change the font size to 18 pixels */
+            font-weight: bold;  /* Make the text bold */
+            margin-left: 830px;
+            margin-top: 100px; /* Center-align the text */
+        }
+        input[type="text"] {
+            margin-top: 1px;
+            margin-left: 700px;
+            height: 30px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            width: 400px;  /* Set the width of the textfield to 250 pixels */
+            padding: 8px;
+        }
+        input[type="password"] {
+            margin-left: 700px;
+            margin-top: 39px;
+            height: 30px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 400px;  /* Set the width of the textfield to 250 pixels */
+            padding: 8px;  /* Add padding for better aesthetics */
+        }
+        
+
+      
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="static/logo.png" width="400px" height="400px" alt="User Sign Up Image">
+    </div>
+    <p> USER LOGIN </p>
+    <br>
+    {% if umessage %}
+    <div id="alert" class = "alert alert-danger" style="background-color:#ffffff; color: #e41d31; width: 400px; margin-left: 700px; height: 30px; border-radius: 10px; align-content: center; ">
+        <strong> {{umessage}}</strong>
+
+
+    </div>
+    {% endif %}
+    
+
+
+
+
+
+    <form action="/userdashboard" method="POST">
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+        <br>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <div class="button-container">
+            <a href="/userdashboard"><button onclick="true" id="loginTwoButton" style="background-color: #07239c; color: #ffffff; border: 1px solid #ccc; border-radius: 20px; width: 400px; height: 50px; font-size: 16px;" type="submit">Login</button></a><br>
+        </div>
+    </form>
+    <div>
+    <a class="signup-link" href="/signup" style="background-color: #ffffff; color: #29a5ec; font-family: Georgia, 'Times New Roman', Times, serif; margin-left: 770px; margin-top: 40px; width: 400px; height: 50px; font-size: 16px;">Don't have an account? Sign Up here</a><br>
+    </div>
+
+    <script>
+        setTimeout(function(){
+            var alertDiv = document.getElementById('alert');
+            if(alertDiv){
+                alertDiv.style.display = 'none';
+            }
+
+        },5000);
+    </script>
+</body>
+</html>
